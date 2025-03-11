@@ -328,11 +328,13 @@
     // 36개의 이미지 생성
     for (let i = 1; i <= 36; i++) {
         let imagePath = `images/gallery/${i}.png`;
-        let detailPage = `detail/detail${i}.html`; // detail 폴더 내 파일로 경로 변경
 
         // 데이터가 있을 경우 사용, 없으면 기본값 설정
         let title = imageData[i - 1] ? imageData[i - 1].title : `이미지 ${i}`;
         let desc = imageData[i - 1] ? imageData[i - 1].desc : "설명이 없습니다.";
+
+        let slug = generateSlug(title); // URL-friendly 변환
+        let detailPage = `detail/${slug}.html`; // detail 폴더 내 파일로 경로 변경
 
         let col = document.createElement("div");
         col.className = "col-6 col-md-2"; // 한 줄에 6개씩 배치
