@@ -328,7 +328,7 @@
     // 36개의 이미지 생성
     for (let i = 1; i <= 36; i++) {
         let imagePath = `images/gallery/${i}.png`;
-        let detailPage = `detail/${i}.html`;
+        let detailPage = `detail/detail${i}.html`;
 
         // 데이터가 있을 경우 사용, 없으면 기본값 설정
         let title = imageData[i - 1] ? imageData[i - 1].title : `이미지 ${i}`;
