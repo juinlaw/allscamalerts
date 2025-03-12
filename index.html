@@ -53,7 +53,7 @@
         "name": "법무법인 주인 사기피해 대응 센터",
         "url": "https://juinlaw.github.io/allscamalerts",
         "logo": "https://juinlaw.github.io/allscamalerts/images/logo.png",
-        "description": "사기 피해 예방 및 피해 회복을 위한 법률 서비스를 제공합니다.",
+        "description": "All Scam Alerts는 사기 피해 복구를 위한 방법을 제시하고 법률 대응 서비스를 제공합니다.",
         "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+82-2-588-7890",
@@ -411,24 +411,35 @@
         function searchScam() {
             let query = document.getElementById("searchInput").value.toLowerCase().trim();
             let bestMatchIndex = -1;
+            let bestMatchScore = 0;
 
-            // 제목에 검색어가 포함된 경우 찾기
             imageData.forEach((item, index) => {
-                if (item.title.toLowerCase().includes(query)) {
+                let title = item.title.toLowerCase();
+                let matchScore = getSimilarityScore(query, title);
+
+                if (matchScore > bestMatchScore) {
+                    bestMatchScore = matchScore;
                     bestMatchIndex = index;
                 }
             });
 
-            // 일치하는 검색 결과가 있으면 상세 페이지로 이동
-            if (bestMatchIndex !== -1) {
-                window.location.href = `detail.html?image=${bestMatchIndex + 1}`;
+            if (bestMatchScore > 0.3) { // 유사도가 일정 기준(0.3) 이상이면 해당 상세 페이지로 이동
+                window.location.href = `detail${bestMatchIndex + 1}.html`;
             } else {
-                // 검색 결과 없을 경우 신고 페이지로 이동
                 window.location.href = `report.html?query=${encodeURIComponent(query)}`;
             }
         }
 
-        // 엔터 키 이벤트 리스너
+        // ✅ 두 문자열의 유사도를 평가하는 함수 (Jaccard Similarity 사용)
+        function getSimilarityScore(str1, str2) {
+            let set1 = new Set(str1.split(" "));
+            let set2 = new Set(str2.split(" "));
+            let intersection = new Set([...set1].filter(x => set2.has(x)));
+            let union = new Set([...set1, ...set2]);
+            return intersection.size / union.size;
+        }
+
+        // ✅ 엔터 키 이벤트 리스너 추가
         function handleKeyPress(event) {
             if (event.key === "Enter") {
                 searchScam();
