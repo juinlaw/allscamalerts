@@ -26,15 +26,15 @@
     <meta property="og:title" content="법무법인 주인 사기피해 대응 센터 - All Scam Alerts">
     <meta property="og:description" content="사기 피해 예방 및 피해 회복을 위한 법률률 서비스를 제공합니다.">
     <meta property="og:image" content="https://juinlaw.github.io/allscamalerts/images/logo.png">
-    <meta property="og:url" content="https://juinlaw.github.io/allscamalerts">
+    <meta property="og:image" content="https://juinlaw.github.io/allscamalerts/images/logo.webp">
     <meta property="og:image:alt" content="법무법인 주인 사기피해 대응 센터 로고">
 
     <!-- 트위터 카드 (Twitter 공유 최적화) -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="법무법인 주인 사기피해 대응 센터 - All Scam Alerts">
     <meta name="twitter:description" content="사기 피해 예방 및 피해 회복을 위한 법률률 서비스를 제공합니다.">
-    <meta name="twitter:image" content="https://juinlaw.github.io/allscamalerts/images/logo.png">
-    <meta name="twitter:image:alt" content="법무법인 주인 사기피해 대응 센터 로고">
+    <meta name="twitter:image" content="https://juinlaw.github.io/allscamalerts/images/logo.webp">
+    <meta name="twitter:image:alt" content="법무법인 주인 사기피해 대응 센터 로고"> 
 
     <!-- Canonical URL (중복 페이지 방지) -->
     <link rel="canonical" href="https://juinlaw.github.io/allscamalerts">
@@ -384,28 +384,28 @@
 
         const galleryContainer = document.getElementById("imageGallery");
 
-        // 36개의 이미지 생성
-        for (let i = 1; i <= 36; i++) {
-            let imagePath = `images/gallery/${i}.png`;
-            let detailPage = `detail${i}.html`;
+    // 36개의 이미지 생성 (PNG → WEBP 변경)
+    for (let i = 1; i <= 36; i++) {
+        let imagePath = `images/gallery/${i}.webp`; // ✅ PNG 대신 WEBP 사용
+        let detailPage = `detail${i}.html`;
 
-            // 데이터가 있을 경우 사용, 없으면 기본값 설정
-            let title = imageData[i - 1] ? imageData[i - 1].title : `이미지 ${i}`;
+        // 데이터가 있을 경우 사용, 없으면 기본값 설정
+        let title = imageData[i - 1] ? imageData[i - 1].title : `이미지 ${i}`;
 
-            let col = document.createElement("div");
-            col.className = "col-6 col-md-2"; // 한 줄에 6개씩 배치
+        let col = document.createElement("div");
+        col.className = "col-6 col-md-2"; // 한 줄에 6개씩 배치
 
-            col.innerHTML = `
-                <div class="card">
-                    <img src="${imagePath}" alt="${title}" class="img-fluid" onclick="location.href='${detailPage}'">
-                    <div class="card-body">
-                        <h5 class="card-title">${title}</h5>
-                        <button class="detail-btn" onclick="location.href='${detailPage}'">자세히 보기</button>
-                    </div>
+        col.innerHTML = `
+            <div class="card">
+                <img src="${imagePath}" alt="${title}" class="img-fluid" onclick="location.href='${detailPage}'">
+                <div class="card-body">
+                    <h5 class="card-title">${title}</h5>
+                    <button class="detail-btn" onclick="location.href='${detailPage}'">자세히 보기</button>
                 </div>
-            `;
-            galleryContainer.appendChild(col);
-        }
+            </div>
+        `;
+        galleryContainer.appendChild(col);
+    }
 
         // 검색 기능 (제목의 일부만 포함되어도 검색)
         function searchScam() {
