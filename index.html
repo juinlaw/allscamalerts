@@ -350,62 +350,59 @@
 
     <!-- JavaScript 코드 -->
     <script>
-        // 이미지별 개별 제목과 설명 설정
+        // ✅ 각 이미지의 고유 파일명을 지정
         const imageData = [
-            { title: "쿠케아 cookea 주의" },
-            { title: "버킷리스트투어 bucket-list-tour 사칭" },
-            { title: "골든시티 GOLDENCITY / goldenc-567 사칭" },
-            { title: "TW플러스 TW PLUS 사칭" },
-            { title: "넥소 비티이 NEXOBTESCY 사칭" },
-            { title: "비트맥스 bitmx365 사칭" },
-            { title: "헌안몰 honermoll 사칭" },
-            { title: "레지오몰 regiomall 사칭" },
-            { title: "록시라이브 roxylive 사칭" },
-            { title: "톱코라이브 req.appsecret.click 사칭" },
-            { title: "뷰티라이브 biuttyinlivetv 사칭" },
-            { title: "시안라이브 cyanlive 사칭" },
-            { title: "던라이트 dawnlight68 사칭" },
-            { title: "오판다티비 opandatv 사칭" },
-            { title: "요기요마켓 yiingn 사칭" },
-            { title: "타링샵 사칭" },
-            { title: "오토그룹 ottogroupex 사칭" },
-            { title: "로얄컴퍼니 royal컴퍼 사칭" },
-            { title: "쇼핑월드세일 ottogroupex 사칭" },
-            { title: "코제샵 coze-syhop 사칭" },
-            { title: "튜월몰 tyuwolmol 사칭" },
-            { title: "메리츠증권 사칭" },
-            { title: "한투신탁운용 사칭" },
-            { title: "네오에셋파트너스 neoasset 사칭" },
-            { title: "삼흥분양건설 사칭" },
-            { title: "별여우티비 사칭" },
-            { title: "수다티비 sudatv88 사칭" },
-            { title: "노라샵 norashop 사칭" },
+            { title: "쿠케아 cookea 주의", filename: "cookea.webp" },
+            { title: "버킷리스트투어 bucket-list-tour 사칭", filename: "bucket-list-tour.webp" },
+            { title: "골든시티 GOLDENCITY / goldenc-567 사칭", filename: "goldencity567.webp" },
+            { title: "TW플러스 TW PLUS 사칭", filename: "twplus.webp" },
+            { title: "넥소 비티이 NEXOBTESCY 사칭", filename: "nexobtescy.webp" },
+            { title: "비트맥스 bitmx365 사칭", filename: "bitmx365.webp" },
+            { title: "헌안몰 honermoll 사칭", filename: "honermoll.webp" },
+            { title: "레지오몰 regiomall 사칭", filename: "regiomall.webp" },
+            { title: "록시라이브 roxylive 사칭", filename: "roxylive.webp" },
+            { title: "톱코라이브 req.appsecret.click 사칭", filename: "appsecret.webp" },
+            { title: "뷰티라이브 biuttyinlivetv 사칭", filename: "biuttyinlivetv.webp" },
+            { title: "시안라이브 cyanlive 사칭", filename: "cyanlive.webp" },
+            { title: "던라이트 dawnlight68 사칭", filename: "dawnlight68.webp" },
+            { title: "오판다티비 opandatv 사칭", filename: "opandatv.webp" },
+            { title: "요기요마켓 yiingn 사칭", filename: "yiingn.webp" },
+            { title: "타링샵 사칭", filename: "taringshop.webp" },
+            { title: "오토그룹 ottogroupex 사칭", filename: "ottogroupex.webp" },
+            { title: "로얄컴퍼니 royal컴퍼 사칭", filename: "royalcompany.webp" },
+            { title: "쇼핑월드세일즈 사칭", filename: "shoppingworldsales.webp" },
+            { title: "코제샵 coze-shop 사칭", filename: "coze-shop.webp" },
+            { title: "튜월몰 tyuwolmol 사칭", filename: "tyuwolmol.webp" },
+            { title: "메리츠증권 사칭", filename: "meritz-securities.webp" },
+            { title: "한투신탁운용 사칭", filename: "hankook-trust.webp" },
+            { title: "네오에셋파트너스 neoasset 사칭", filename: "neoasset.webp" },
+            { title: "삼흥분양건설 사칭", filename: "samheung-construction.webp" },
+            { title: "별여우티비 사칭", filename: "starfox-tv.webp" },
+            { title: "수다티비 sudatv88 사칭", filename: "sudatv88.webp" },
+            { title: "노라샵 norashop 사칭", filename: "norashop.webp" }
         ];
 
         const galleryContainer = document.getElementById("imageGallery");
 
-    // 36개의 이미지 생성 (PNG → WEBP 변경)
-    for (let i = 1; i <= 36; i++) {
-        let imagePath = `images/gallery/${i}.webp`; // ✅ PNG 대신 WEBP 사용
-        let detailPage = `detail${i}.html`;
+        // ✅ 각 이미지의 파일명을 사용하여 동적으로 생성
+        imageData.forEach((item, index) => {
+            let imagePath = `images/gallery/${item.filename}`; // ✅ 고유한 파일명 사용
+            let detailPage = `detail${index + 1}.html`; // ✅ 상세 페이지 연결
 
-        // 데이터가 있을 경우 사용, 없으면 기본값 설정
-        let title = imageData[i - 1] ? imageData[i - 1].title : `이미지 ${i}`;
+            let col = document.createElement("div");
+            col.className = "col-6 col-md-2"; // 한 줄에 6개씩 배치
 
-        let col = document.createElement("div");
-        col.className = "col-6 col-md-2"; // 한 줄에 6개씩 배치
-
-        col.innerHTML = `
-            <div class="card">
-                <img src="${imagePath}" alt="${title}" class="img-fluid" onclick="location.href='${detailPage}'">
-                <div class="card-body">
-                    <h5 class="card-title">${title}</h5>
-                    <button class="detail-btn" onclick="location.href='${detailPage}'">자세히 보기</button>
+            col.innerHTML = `
+                <div class="card">
+                    <img src="${imagePath}" alt="${item.title}" class="img-fluid" onclick="location.href='${detailPage}'">
+                    <div class="card-body">
+                        <h5 class="card-title">${item.title}</h5>
+                        <button class="detail-btn" onclick="location.href='${detailPage}'">자세히 보기</button>
+                    </div>
                 </div>
-            </div>
-        `;
-        galleryContainer.appendChild(col);
-    }
+            `;
+            galleryContainer.appendChild(col);
+        });
 
         // 검색 기능 (제목의 일부만 포함되어도 검색)
         function searchScam() {
