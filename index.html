@@ -440,7 +440,7 @@
                 let filenameWithoutExt = item.filename.replace('.webp', ''); // 확장자 제거
                 let slug = generateSlug(filenameWithoutExt); // URL-friendly 변환
                 let imagePath = `https://juinlaw.github.io/allscamalerts/images/gallery/${item.filename}`;
-                let detailPage = `allscamalerts/${slug}.html`; // ✅ 한 번만 allscamalerts 포함
+                let detailPage = `/${slug}.html`; // ✅ 한 번만 allscamalerts 포함
 
                 let col = document.createElement("div");
                 col.className = "col-6 col-md-2"; // 한 줄에 6개씩 정렬
