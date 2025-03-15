@@ -425,47 +425,54 @@
 
         const galleryContainer = document.getElementById("imageGallery");
 
-        // ✅ 각 이미지의 파일명을 사용하여 동적으로 생성
-        imageData.forEach((item, index) => {
-            let imagePath = `images/gallery/${item.filename}`; // ✅ 고유한 파일명 사용
-            let detailPage = `detail${index + 1}.html`; // ✅ 상세 페이지 연결
+        // ✅ 제목을 URL-friendly 형태로 변환하는 함수
+        function generateSlug(title) {
+            return title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+        }
+
+        // ✅ 이미지 데이터
+        const imageData = [
+            { title: "쿠케아 cookea 사칭", filename: "cookea.webp" },
+            { title: "버킷리스트투어 bucket-list-tour 사칭", filename: "bucket-list-tour.webp" },
+            { title: "골든시티 GOLDENCITY 사칭", filename: "goldencity.webp" }
+        ];
+
+        const galleryContainer = document.getElementById("imageGallery");
+
+        // ✅ 이미지 갤러리 생성
+        imageData.forEach((item) => {
+            let slug = generateSlug(item.title);
+            let imagePath = `images/gallery/${item.filename}`;
 
             let col = document.createElement("div");
-            col.className = "col-6 col-md-2"; // 한 줄에 6개씩 배치
-
+            col.className = "col-6 col-md-2";
             col.innerHTML = `
                 <div class="card">
-                    <img src="${imagePath}" alt="${item.title}" class="img-fluid" onclick="location.href='${detailPage}'">
+                    <img src="${imagePath}" alt="${item.title}" onclick="location.href='/${slug}'">
                     <div class="card-body">
                         <h5 class="card-title">${item.title}</h5>
-                        <button class="detail-btn" onclick="location.href='${detailPage}'">자세히 보기</button>
+                        <button onclick="location.href='/${slug}'">자세히 보기</button>
                     </div>
                 </div>
             `;
             galleryContainer.appendChild(col);
         });
 
-        // 검색 기능 (제목의 일부만 포함되어도 검색)
+        // ✅ 검색 기능
         function searchScam() {
             let query = document.getElementById("searchInput").value.toLowerCase().trim();
-            let bestMatchIndex = -1;
-            let bestMatchScore = 0;
+            let match = imageData.find(item => item.title.toLowerCase().includes(query));
 
-            imageData.forEach((item, index) => {
-                let title = item.title.toLowerCase();
-                let matchScore = getSimilarityScore(query, title);
-
-                if (matchScore > bestMatchScore) {
-                    bestMatchScore = matchScore;
-                    bestMatchIndex = index;
-                }
-            });
-
-            if (bestMatchScore > 0.3) { // 유사도가 일정 기준(0.3) 이상이면 해당 상세 페이지로 이동
-                window.location.href = `detail${bestMatchIndex + 1}.html`;
+            if (match) {
+                let slug = generateSlug(match.title);
+                window.location.href = `/${slug}`;
             } else {
-                window.location.href = `report.html?query=${encodeURIComponent(query)}`;
+                alert("해당 검색어에 대한 결과가 없습니다.");
             }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") searchScam();
         }
 
         // ✅ 두 문자열의 유사도를 평가하는 함수 (Jaccard Similarity 사용)
