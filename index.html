@@ -440,7 +440,7 @@
                 let filenameWithoutExt = item.filename.replace('.webp', ''); // 확장자 제거
                 let slug = generateSlug(filenameWithoutExt); // URL-friendly 변환
                 let imagePath = `https://juinlaw.github.io/allscamalerts/images/gallery/${item.filename}`;
-                let detailPage = `/${slug}.html`; // 상세 페이지 경로 설정
+                let detailPage = `allscamalerts/${slug}.html`; // 상세 페이지 경로 설정
 
                 let col = document.createElement("div");
                 col.className = "col-6 col-md-2"; // 한 줄에 6개씩 정렬
@@ -449,7 +449,7 @@
                         <img src="${imagePath}" alt="${item.title}">
                         <div class="card-body">
                             <h5 class="card-title">${item.title}</h5>
-                            <button class="detail-btn" onclick="location.href='${detailPage}'">자세히 보기</button>
+                            <button class="detail-btn" onclick="location.href='allscamalerts/${detailPage}'">자세히 보기</button>
                         </div>
                     </div>
                 `;
