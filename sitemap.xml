@@ -1,45 +1,249 @@
-const fs = require('fs');
-const path = require('path');
-
-// 📌 HTML 파일이 저장된 디렉토리
-const directoryPath = path.join(__dirname, 'allscamalerts');
-const baseUrl = 'https://juinlaw.github.io/allscamalerts';
-
-// 현재 날짜를 YYYY-MM-DD 형식으로 반환하는 함수
-function getFormattedDate(date) {
-    return date.toISOString().split('T')[0];
-}
-
-// sitemap.xml 생성 함수
-function generateSitemap() {
-    let urls = [];
-    const files = fs.readdirSync(directoryPath);
-
-    files.forEach(file => {
-        if (file.endsWith('.html')) {
-            const filePath = path.join(directoryPath, file);
-            const stats = fs.statSync(filePath);
-            const lastModified = getFormattedDate(stats.mtime); // 파일의 마지막 수정 날짜
-
-            urls.push(`
-    <url>
-        <loc>${baseUrl}/${file}</loc>
-        <lastmod>${lastModified}</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>`);
-        }
-    });
-
-    const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.join('\n')}
-</urlset>`;
-
-    fs.writeFileSync(path.join(__dirname, 'sitemap.xml'), sitemapContent);
-    console.log('✅ sitemap.xml이 성공적으로 생성되었습니다.');
-}
-
-// 실행
-generateSitemap();
-
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/</loc>
+        <lastmod>2024-03-11</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/appsecret.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/bitmx365.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/biuttyinlivetv.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/bucket-list-tour.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/coinbe.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/consult.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/cookea.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/coze-shop.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/cyanlive.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/dawnlight68.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/dollarindex.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/goldencity567.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/h-able.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/hankook-trust.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/honermoll.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/kaworld-mall.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/koyatmines.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/meritz-securities.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/neoasset.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/nesenmol.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/nexobtescy.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/norashop.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/nteopsat.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/opandatv.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/ottogroupex.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/regiomall.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/roxylive.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/royalcompany.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/samheung-construction.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/seuupeumoll.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/shoppingworldsales.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/starfox-tv.html/loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/sudatv88.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/taringshop.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/toogongmall.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/twplus.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/tyuwolmol.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/wondermarkets.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/yiingn.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://juinlaw.github.io/allscamalerts/detail4.html</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+</urlset>
