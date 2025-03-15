@@ -437,7 +437,7 @@
                 let imagePath = `https://juinlaw.github.io/allscamalerts/images/gallery/${item.filename}`;
 
                 let col = document.createElement("div");
-                col.className = "col-6 col-md-3";
+                col.className = "col-6 col-md-2"; // 한 줄에 6개씩 정렬
                 col.innerHTML = `
                     <div class="card">
                         <img src="${imagePath}" alt="${item.title}" onclick="location.href='/${slug}'">
