@@ -428,8 +428,9 @@
             return title
                 .toLowerCase()
                 .trim() // 앞뒤 공백 제거
-                .replace(/[^a-z0-9-]/g, '-') // 특수문자 제거
-                .replace(/-+/g, '-'); // 여러 개의 '-'를 하나로 줄임
+                .replace(/[^a-z0-9ㄱ-ㅎ가-힣-]/g, '') // 특수문자 제거 (한글 허용)
+                .replace(/\s+/g, '-') // 공백을 '-'로 변환
+                .replace(/-+/g, '-'); // 연속된 '-' 제거
         }
         
         // ✅ 이미지 갤러리 생성
@@ -463,8 +464,9 @@
             let match = imageData.find(item => item.title.toLowerCase().includes(query));
 
             if (match) {
-                let slug = generateSlug(match.title);
-                window.location.href = `/${slug}`;
+                let slug = generateSlug(match.filename.replace('.webp', '')); // 올바른 파일명을 기반으로 slug 생성
+                let targetURL = `${window.location.origin}/allscamalerts/${slug}.html`;
+                window.location.href = targetURL;
             } else {
                 alert("해당 검색어에 대한 결과가 없습니다.");
             }
