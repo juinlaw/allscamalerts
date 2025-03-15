@@ -350,7 +350,12 @@
 
     <!-- JavaScript 코드 -->
     <script>
-        // ✅ 각 이미지의 고유 파일명을 지정
+        // ✅ 제목을 URL-friendly 형태로 변환하는 함수
+        function generateSlug(title) {
+            return title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+        }
+
+        // ✅ 이미지 데이터
         const imageData = [
             { title: "쿠케아 cookea 주의", filename: "cookea.webp" },
             { title: "버킷리스트투어 bucket-list-tour 사칭", filename: "bucket-list-tour.webp" },
@@ -421,20 +426,6 @@
             { title: "노라샵 norashop 사칭", filename: "norashop.webp" },
             { title: "노라샵 norashop 사칭", filename: "norashop.webp" },
             { title: "노라샵 norashop 사칭", filename: "norashop.webp" }
-        ];
-
-        const galleryContainer = document.getElementById("imageGallery");
-
-        // ✅ 제목을 URL-friendly 형태로 변환하는 함수
-        function generateSlug(title) {
-            return title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-        }
-
-        // ✅ 이미지 데이터
-        const imageData = [
-            { title: "쿠케아 cookea 사칭", filename: "cookea.webp" },
-            { title: "버킷리스트투어 bucket-list-tour 사칭", filename: "bucket-list-tour.webp" },
-            { title: "골든시티 GOLDENCITY 사칭", filename: "goldencity.webp" }
         ];
 
         const galleryContainer = document.getElementById("imageGallery");
