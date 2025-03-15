@@ -423,9 +423,13 @@
             { title: "노라샵 norashop 사칭", filename: "norashop.webp" }
         ];
 
-        // ✅ 제목을 URL-friendly 형태로 변환하는 함수
+        // ✅ URL-friendly 변환 함수 수정 (파일명만 변환)
         function generateSlug(title) {
-            return title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+            return title
+                .toLowerCase()
+                .trim() // 앞뒤 공백 제거
+                .replace(/[^a-z0-9-]/g, '-') // 특수문자 제거
+                .replace(/-+/g, '-'); // 여러 개의 '-'를 하나로 줄임
         }
         
         // ✅ 이미지 갤러리 생성
@@ -433,9 +437,10 @@
             const galleryContainer = document.getElementById("imageGallery");
 
             imageData.forEach((item) => {
-                let slug = generateSlug(item.filename.replace('.webp', '')); // 확장자 제거 후 슬러그 변환
+                let filenameWithoutExt = item.filename.replace('.webp', ''); // 확장자 제거
+                let slug = generateSlug(filenameWithoutExt); // URL-friendly 변환
                 let imagePath = `https://juinlaw.github.io/allscamalerts/images/gallery/${item.filename}`;
-                let detailPage = `${slug}.html`; // 상세 페이지 이름 생성
+                let detailPage = `/${slug}.html`; // 상세 페이지 경로 설정
 
                 let col = document.createElement("div");
                 col.className = "col-6 col-md-2"; // 한 줄에 6개씩 정렬
