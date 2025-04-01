@@ -45,6 +45,8 @@
     <!-- Favicon (브라우저 탭 아이콘) -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
+    <base href="https://allscamalerts.com/" />
+    
     <!-- ✅ 구조화 데이터 (Schema.org JSON-LD) -->
     <script type="application/ld+json">
     {
@@ -441,7 +443,7 @@
                 let filenameWithoutExt = item.filename.replace('.webp', ''); // 확장자 제거
                 let slug = generateSlug(filenameWithoutExt); // URL-friendly 변환
                 let imagePath = `https://juinlaw.github.io/allscamalerts/images/gallery/${item.filename}`;
-                let detailPage = `/${slug}.html`;
+                let detailPage = `/${slug}.html`; // ❌ allscamalerts 포함하지 말기
 
                 let col = document.createElement("div");
                 col.className = "col-6 col-md-2"; // 한 줄에 6개씩 정렬
