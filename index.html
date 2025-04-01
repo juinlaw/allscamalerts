@@ -441,7 +441,7 @@
                 let filenameWithoutExt = item.filename.replace('.webp', ''); // 확장자 제거
                 let slug = generateSlug(filenameWithoutExt); // URL-friendly 변환
                 let imagePath = `https://juinlaw.github.io/allscamalerts/images/gallery/${item.filename}`;
-                let detailPage = new URL(`/allscamalerts/${slug}.html`, window.location.origin).href;
+                let detailPage = new URL(`/${slug}.html`, window.location.origin).href;
 
                 let col = document.createElement("div");
                 col.className = "col-6 col-md-2"; // 한 줄에 6개씩 정렬
@@ -465,7 +465,7 @@
 
             if (match) {
                 let slug = generateSlug(match.filename.replace('.webp', '')); // 올바른 파일명을 기반으로 slug 생성
-                let targetURL = `${window.location.origin}/allscamalerts/${slug}.html`;
+                let targetURL = `${window.location.origin}/${slug}.html`;
                 window.location.href = targetURL;
             } else {
                 alert("해당 검색어에 대한 결과가 없습니다.");
